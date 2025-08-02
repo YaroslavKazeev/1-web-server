@@ -4,7 +4,6 @@
 
 import { createServer } from "http";
 import { readFile } from "fs/promises";
-import { extname } from "path";
 
 //create a server
 const server = createServer(async function (req, res) {
