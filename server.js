@@ -6,18 +6,27 @@ import { createServer } from "http";
 import { readFile } from "fs/promises";
 
 //create a server
-let server = createServer(async function (req, res) {
+const server = createServer(async function (req, res) {
   try {
-    const html = await readFile("index.html");
+    let file;
+    let contentType;
+    if (req.url === "/") {
+      file = "index.html";
+      contentType = "text/html";
+    } else {
+      file = "index.js";
+      contentType = "text/javascript";
+    }
+    const fileContent = await readFile(file);
     res.statusCode = 200;
-    res.setHeader("Content-type", "text/html");
-    res.write(html); // Sends a response back to the client
+    res.setHeader("Content-type", contentType);
+    res.write(fileContent); // Sends a response back to the client
     res.end(); // Ends the response
   } catch (err) {
     console.log("File reading error ", err.message);
     res.statusCode = 500;
     res.setHeader("Content-type", "text/plain");
-    res.write("Internal Server Error");
+    res.write("File reading error on server", err.message);
     res.end();
   }
 });
