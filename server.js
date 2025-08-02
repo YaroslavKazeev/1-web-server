@@ -9,6 +9,7 @@ import { readFile } from "fs/promises";
 const server = createServer(async function (req, res) {
   let file;
   let contentType;
+  // console.log(req.url);
   switch (req.url) {
     case "/":
       file = "index.html";
@@ -22,6 +23,11 @@ const server = createServer(async function (req, res) {
       file = "style.css";
       contentType = "text/css";
       break;
+    default:
+      res.statusCode = 500;
+      res.setHeader("Content-type", "text/plain");
+      res.end("File not found on the server");
+      return;
   }
   try {
     const fileContent = await readFile(file);
@@ -33,8 +39,7 @@ const server = createServer(async function (req, res) {
     console.log("File reading error ", err.message);
     res.statusCode = 500;
     res.setHeader("Content-type", "text/plain");
-    res.write("File reading error on the server", err.message);
-    res.end();
+    res.end(`File reading error on the server, ${err.message}`);
   }
 });
 
