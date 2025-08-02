@@ -4,19 +4,27 @@
 
 import { createServer } from "http";
 import { readFile } from "fs/promises";
+import { extname } from "path";
 
 //create a server
 const server = createServer(async function (req, res) {
-  try {
-    let file;
-    let contentType;
-    if (req.url === "/") {
+  let file;
+  let contentType;
+  switch (req.url) {
+    case "/":
       file = "index.html";
       contentType = "text/html";
-    } else {
+      break;
+    case "/index.js":
       file = "index.js";
       contentType = "text/javascript";
-    }
+      break;
+    case "/style.css":
+      file = "style.css";
+      contentType = "text/css";
+      break;
+  }
+  try {
     const fileContent = await readFile(file);
     res.statusCode = 200;
     res.setHeader("Content-type", contentType);
