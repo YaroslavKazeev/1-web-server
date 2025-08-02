@@ -49,6 +49,17 @@ When the server gets a request at `http://localhost:3000/style.css` respond with
 ## Things to think about
 
 - Why do we have to build a whole server just to serve a webpage?
+
+That is just for the sake of practicing.
+
 - Is this how all webpages are sent to users?
+
+Yes
+
 - Are all webpages served by sending a file back on a request? And could this work for sending files as well (think of sharing an image or a video)?
+
+The webpage consists of different types of files, including images and videos are some of the file types that the server can send.
+
 - In the world of cloud computing, does that change anything to hosting these webpages?
+
+This does not change anything, since the server can run both on real hardware and on a virtual machine in the cloud.

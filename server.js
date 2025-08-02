@@ -34,7 +34,7 @@ const server = createServer(async function (req, res) {
     console.log("File reading error ", err.message);
     res.statusCode = 500;
     res.setHeader("Content-type", "text/plain");
-    res.write("File reading error on server", err.message);
+    res.write("File reading error on the server", err.message);
     res.end();
   }
 });
