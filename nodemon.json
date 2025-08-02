@@ -1,0 +1,8 @@
+{
+  "watch": ["server.js", "index.html", "index.js"],
+  "ignore": ["node_modules/", "package-lock.json"],
+  "ext": "js,html,css,json",
+  "env": {
+    "NODE_ENV": "development"
+  }
+}
